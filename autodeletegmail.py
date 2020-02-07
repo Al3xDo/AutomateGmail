@@ -1,4 +1,4 @@
-import imapclient,os,imaplib
+import imapclient,os,imaplib,pprint
 print('THE SOFT WILL USE THE FILE IN THE DIRECTORY '+ os.getcwd())
 print('ONLY USE WITH GMAIL')
 imaplib._MAXLINE = 10000000/2
@@ -10,16 +10,9 @@ print('password:')
 mypass=input()
 imapObj.login(name,mypass)
 print('if u see imaplib.error: got more than 10000 bytes then restart the soft')
-print('Add the name of the labels (remember to cappitalized)')
-print("""
-ex: 
-INBOX
-DARFT
-SENT
-TRASH
-""")
+print('Add the name of the labels')
+pprint.pprint(imapObj.list_folders())
 label=input()
-label=label.capitalize()
 imapObj.select_folder(label,readonly=False)
 while True:
     print("""1. Deleting gmail by the date""")
